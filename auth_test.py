@@ -45,7 +45,7 @@ def test_refresh_token(authentication_client) -> None:
     response: Response = auth.refresh()
     assert response.status_code == 200
 
-    new_access = authentication_client.client.cookies.get("token")
+    new_access: str | None = authentication_client.client.cookies.get("token")
     assert new_access is not None
 
 
@@ -57,7 +57,7 @@ def test_refresh_token(authentication_client) -> None:
         ({"refresh_token": "invalidtoken"}, 500),
     ]
 )
-def test_refresh_failures(authentication_client, initial_cookies, expected_status):
+def test_refresh_failures(authentication_client, initial_cookies: dict, expected_status: int):
     """Негативные  тест для токенов"""
     authentication_client.client.cookies.clear()
     for key, value in initial_cookies.items():

@@ -9,7 +9,7 @@ class AuthManager:
         self.auth_api: AuthAPI = AuthAPI(self.client)
 
     def authenticate(self) -> None:
-        response = self.auth_api.login(self.username, self.password)
+        response: Response = self.auth_api.login(self.username, self.password)
 
         assert response.status_code == 200, "Login failed"
 
