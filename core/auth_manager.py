@@ -11,6 +11,7 @@ class AuthManager:
     def authenticate(self) -> None:
         response: Response = self.auth_api.login(self.username, self.password)
 
+        print(response.status_code)
         assert response.status_code == 200, "Login failed"
 
         cookies = self.client.client.cookies
