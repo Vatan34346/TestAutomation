@@ -6,7 +6,7 @@ from core.config import Settings
 
 @pytest.fixture(scope="session")
 def api_client():
-    client: APIClient = APIClient(Settings.BASE_URL)
+    client: APIClient = APIClient(Settings.BASE_URL or "https://api.casino-stage.com/api/v1/")
     yield client
     client.close()
 
